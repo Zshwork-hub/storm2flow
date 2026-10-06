@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import numpy as np
-from scipy.special import gammainc, gamma
+from scipy.special import gammainc
 
 from .errors import ConservationError, InputValidationError
 
@@ -15,6 +15,7 @@ class HydrographResult:
     unit_response: np.ndarray
     unit_response_sum: float
     water_balance_relative_error: float
+    time_step_h: float
 
     @property
     def peak_flow_m3s(self) -> float:
@@ -26,9 +27,8 @@ class HydrographResult:
 
     @property
     def volume_m3(self) -> float:
-        if self.flow_m3s.size < 2:
-            return 0.0
-        return float(np.trapezoid(self.flow_m3s, self.time_h) * 3600.0)
+        # Each ordinate represents a mean flow over a full interval.
+        return float(self.flow_m3s.sum() * self.time_step_h * 3600.0)
 
 
 class GammaUnitHydrograph:
@@ -97,4 +97,4 @@ class GammaUnitHydrograph:
             raise ConservationError(
                 f"hydrograph volume error {relative_error:.6%} exceeds {conservation_tolerance:.2%}"
             )
-        return HydrographResult(time, flow, response, float(response.sum()), relative_error)
+        return HydrographResult(time, flow, response, float(response.sum()), relative_error, time_step_h)

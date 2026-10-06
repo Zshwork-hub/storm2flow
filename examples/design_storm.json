@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "basin": {
+    "name": "合成演示流域（非真实流域）",
+    "area_km2": 6.82,
+    "parameter_source": "synthetic demonstration"
+  },
+  "rainfall": {
+    "source": "synthetic demonstration",
+    "return_period_y": 20,
+    "time_step_h": 1.0,
+    "duration_h": 6.0,
+    "rainfall_mm": [12, 35, 58, 42, 20, 8]
+  },
+  "runoff": {"initial_loss_mm": 20.0, "stable_loss_mm_per_h": 2.0},
+  "unit_hydrograph": {"n": 2.5, "K_h": 1.2, "source": "synthetic demonstration"}
+}

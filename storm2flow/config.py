@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -35,15 +36,28 @@ def validate_config(config: dict[str, Any]) -> None:
     values = rainfall.get("rainfall_mm")
     if not isinstance(values, list) or not values:
         raise InputValidationError("rainfall.rainfall_mm must be a non-empty list")
-    if rainfall.get("time_step_h", 0) <= 0:
-        raise InputValidationError("rainfall.time_step_h must be positive")
-    if any(not isinstance(value, (int, float)) or value < 0 for value in values):
-        raise InputValidationError("rainfall.rainfall_mm must contain non-negative numbers")
+    step = _number(rainfall.get("time_step_h"), "rainfall.time_step_h", positive=True)
+    for value in values:
+        _number(value, "rainfall.rainfall_mm", positive=False)
+    if "duration_h" in rainfall:
+        duration = _number(rainfall["duration_h"], "rainfall.duration_h", positive=True)
+        if not math.isclose(duration, len(values) * step, rel_tol=1e-8, abs_tol=1e-8):
+            raise InputValidationError("rainfall.duration_h does not match array length and time_step_h")
+    if rainfall.get("return_period_y") is not None:
+        _number(rainfall["return_period_y"], "rainfall.return_period_y", positive=True)
 
     runoff = config["runoff"]
-    if runoff.get("initial_loss_mm", -1) < 0 or runoff.get("stable_loss_mm_per_h", -1) < 0:
-        raise InputValidationError("runoff losses must be non-negative")
+    for name in ("initial_loss_mm", "stable_loss_mm_per_h"):
+        _number(runoff.get(name), f"runoff.{name}", positive=False)
 
     uh = config["unit_hydrograph"]
-    if uh.get("n", 0) <= 0 or uh.get("K_h", 0) <= 0:
-        raise InputValidationError("unit_hydrograph n and K_h must be positive")
+    for name in ("n", "K_h"):
+        _number(uh.get(name), f"unit_hydrograph.{name}", positive=True)
+
+
+def _number(value: Any, name: str, *, positive: bool) -> float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+        raise InputValidationError(f"{name} must be a finite number")
+    if value < 0 or (positive and value == 0):
+        raise InputValidationError(f"{name} must be {'positive' if positive else 'non-negative'}")
+    return float(value)
