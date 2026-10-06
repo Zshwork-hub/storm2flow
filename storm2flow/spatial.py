@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import math
 
 from .errors import InputValidationError
 
@@ -39,7 +40,7 @@ def read_raster_info(path: str | Path) -> RasterInfo:
         raise InputValidationError("DEM must have a geotransform and CRS")
     if transform[2] != 0 or transform[4] != 0:
         raise InputValidationError("rotated DEM grids are not supported in MVP")
-    if abs(transform[1]) <= 0 or abs(transform[5]) <= 0:
+    if not all(math.isfinite(v) for v in transform) or abs(transform[1]) <= 0 or abs(transform[5]) <= 0:
         raise InputValidationError("DEM pixel size must be positive")
     require_projected_crs(projection)
     return RasterInfo(
@@ -63,5 +64,5 @@ def require_projected_crs(wkt: str) -> None:
         raise InputValidationError("DEM CRS must be a projected CRS with metre-based horizontal units")
     unit_name = spatial_ref.GetLinearUnitsName() or ""
     unit_factor = spatial_ref.GetLinearUnits()
-    if unit_factor <= 0 or unit_name.lower() not in {"metre", "meter", "metres", "meters", "m"}:
+    if not math.isclose(unit_factor, 1.0, abs_tol=1e-12) or unit_name.lower() not in {"metre", "meter", "metres", "meters", "m"}:
         raise InputValidationError("DEM projected CRS must use metres as its horizontal unit")

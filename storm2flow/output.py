@@ -5,6 +5,7 @@ import csv
 import html
 import json
 import platform
+from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -76,6 +77,7 @@ def export_results(
     hydrograph: HydrographResult,
     *,
     basin_source: Path | None = None,
+    spatial_analysis=None,
 ) -> Path:
     """Export to a new directory; refuse overwriting any existing result directory.
 
@@ -85,13 +87,13 @@ def export_results(
         raise InputValidationError(f"output directory already exists: {destination}")
     destination.mkdir(parents=True)
     try:
-        return _export(destination, config, rainfall, runoff, hydrograph, basin_source)
+        return _export(destination, config, rainfall, runoff, hydrograph, basin_source, spatial_analysis)
     except Exception as exc:
         (destination / "failure.txt").write_text(str(exc), encoding="utf-8")
         raise
 
 
-def _export(destination, config, rainfall, runoff, hydrograph, basin_source):
+def _export(destination, config, rainfall, runoff, hydrograph, basin_source, spatial_analysis):
     # Persist the input before any plotting/spatial operation can fail.
     (destination / "parameters.json").write_text(
         json.dumps(config, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8"
@@ -100,10 +102,14 @@ def _export(destination, config, rainfall, runoff, hydrograph, basin_source):
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_agg import FigureCanvasAgg
 
-    warnings = [
-        "当前采用人工复核的流域参数；自动断面吸附和平坦区流向处理尚未完成。",
-        "本次仅计算一个重现期，未进行跨重现期单调性检查。",
-    ]
+    warnings = ["本次仅计算一个重现期，未进行跨重现期单调性检查。"]
+    if spatial_analysis is not None:
+        from .spatial_pipeline import save_spatial_analysis
+        basin_source = save_spatial_analysis(spatial_analysis, destination / 'intermediate')
+        warnings.extend(spatial_analysis.warnings)
+        warnings.append("流域参数已由 DEM 提取；请查看出口吸附和主河道纵断面，确认后用于实际评估。")
+    else:
+        warnings.append("当前采用人工复核的流域参数，未执行 DEM 自动提取。")
     spatial_metadata = []
     if basin_source is None:
         warnings.append("未提供流域空间图层，未生成 basin.gpkg；未用输入参数虚构边界。")
@@ -135,7 +141,7 @@ def _export(destination, config, rainfall, runoff, hydrograph, basin_source):
               [[rainfall.return_period_y, "gamma", hydrograph.peak_flow_m3s,
                 hydrograph.peak_time_h, hydrograph.peak_time_h + step, hydrograph.volume_m3]])
     intermediate = destination / "intermediate"
-    intermediate.mkdir()
+    intermediate.mkdir(exist_ok=True)
     write_csv(intermediate / "unit_response.csv", ["start_time_h", "end_time_h", "response_fraction"],
               ((i * step, (i + 1) * step, value) for i, value in enumerate(hydrograph.unit_response)))
 
@@ -169,6 +175,8 @@ def _export(destination, config, rainfall, runoff, hydrograph, basin_source):
         "unit_response_truncated_fraction": 1 - hydrograph.unit_response_sum,
         "warnings": warnings,
         "spatial_layers": spatial_metadata,
+        "outlet_snapping": ({**asdict(spatial_analysis.outlet), "success": True}
+                            if spatial_analysis is not None else None),
         "versions": {"storm2flow": "0.1.0", "python": platform.python_version(),
                      "numpy": np.__version__, "scipy": scipy.__version__,
                      "matplotlib": matplotlib.__version__},
@@ -189,12 +197,12 @@ def _export(destination, config, rainfall, runoff, hydrograph, basin_source):
     warning_html = "".join(f"<li>{safe(w)}</li>" for w in warnings)
     rows = "".join(f"<tr><th>{safe(k)}</th><td>{safe(v)}</td></tr>"
                    for k, v in summary.items() if k not in ("warnings", "versions"))
-    links = "".join(f'<li><a href="{p.name}">{p.name}</a></li>'
-                    for p in sorted(destination.iterdir()) if p.is_file())
+    links = "".join(f'<li><a href="{p.relative_to(destination).as_posix()}">{p.relative_to(destination).as_posix()}</a></li>'
+                    for p in sorted(destination.rglob('*')) if p.is_file())
     report = f'''<!doctype html><html lang="zh-CN"><meta charset="utf-8">
 <title>storm2flow 计算报告</title>
 <style>body{{font:16px/1.7 system-ui;margin:40px auto;max-width:1000px;padding:0 20px}}
-th,td{{border:1px solid #ddd;padding:6px 12px;text-align:left}}table{{border-collapse:collapse}}
+th,td{{border:1px solid #ddd;padding:6px 12px;text-align:left;overflow-wrap:anywhere}}table{{border-collapse:collapse;width:100%;table-layout:fixed}}
 img{{max-width:100%}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f6f8;padding:16px}}
 .warning{{background:#fff3cf;padding:16px}}</style>
 <h1>{safe(summary['basin_name'])} — 设计洪水计算报告</h1>
