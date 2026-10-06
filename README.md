@@ -1,6 +1,16 @@
 # storm2flow
 
-小流域设计洪水初步筛查工具。已支持 DEM 参数提取、出口吸附、平坦区排水、河网最长主河道和成果输出；QGIS 插件界面尚在开发中。
+小流域设计洪水初步筛查工具。已支持 DEM 参数提取、出口吸附、平坦区排水、河网最长主河道、成果输出及 QGIS 插件试用界面。
+
+## QGIS 插件
+
+插件版本 0.2.0，当前仅验证 Windows + QGIS 3.44.14。安装和操作见 [插件试用说明](docs/qgis-plugin-guide.md)。
+
+```powershell
+.\tools\run-qgis-python.ps1 -PythonArguments @('tools/build-plugin.py')
+```
+
+生成 `dist/storm2flow-0.2.0.zip`，可通过 QGIS“从 ZIP 安装”。空间参数须先提取、复核，再计算。后台进程支持取消，输出目录不会覆盖。
 
 ## 开发基线
 

@@ -1,0 +1,15 @@
+[general]
+name=storm2flow 小流域设计洪水
+description=DEM 流域参数提取与设计洪水初步筛查
+about=支持出口吸附、主河道参数复核、初损稳损产流、Gamma 单位线及成果导出。
+version=0.2.0
+qgisMinimumVersion=3.44
+qgisMaximumVersion=3.44
+author=Zshwork-hub
+email=noreply@github.com
+homepage=https://github.com/Zshwork-hub/storm2flow
+repository=https://github.com/Zshwork-hub/storm2flow
+tracker=https://github.com/Zshwork-hub/storm2flow/issues
+category=Analysis
+experimental=True
+deprecated=False

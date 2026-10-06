@@ -16,6 +16,7 @@ from .errors import InputValidationError
 from .rainfall import RainfallSeries
 from .runoff import RunoffResult
 from .unit_hydrograph import HydrographResult
+from . import __version__
 
 
 def write_csv(path: Path, headers: list[str], rows) -> None:
@@ -177,7 +178,7 @@ def _export(destination, config, rainfall, runoff, hydrograph, basin_source, spa
         "spatial_layers": spatial_metadata,
         "outlet_snapping": ({**asdict(spatial_analysis.outlet), "success": True}
                             if spatial_analysis is not None else None),
-        "versions": {"storm2flow": "0.1.0", "python": platform.python_version(),
+        "versions": {"storm2flow": __version__, "python": platform.python_version(),
                      "numpy": np.__version__, "scipy": scipy.__version__,
                      "matplotlib": matplotlib.__version__},
     }
