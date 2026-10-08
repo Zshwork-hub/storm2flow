@@ -1,0 +1,231 @@
+[
+  {
+    "case": "exponential_single_pulse",
+    "kind": "synthetic_hydrology",
+    "basis": "independent closed form / PDF quadrature",
+    "inputs": {
+      "rainfall_mm": [
+        10
+      ],
+      "net_reference_mm": [
+        10
+      ],
+      "dt_h": 1,
+      "area_km2": 1,
+      "Ia_mm": 0,
+      "f_mm_per_h": 0,
+      "n": 1,
+      "K_h": 1
+    },
+    "peak_m3s": 1.755890441190438,
+    "reference_peak_m3s": 1.755890441190438,
+    "peak_relative_error": 0.0,
+    "peak_interval_start_error_h": 0.0,
+    "volume_m3": 9999.99997938846,
+    "ideal_volume_m3": 10000,
+    "volume_relative_error": 2.0611540094250813e-09,
+    "net_max_absolute_error_mm": 0.0,
+    "flow_max_absolute_error_m3s": 0.0,
+    "unit_response_sum": 0.9999999979388464,
+    "passed": true
+  },
+  {
+    "case": "integer_gamma_with_losses",
+    "kind": "synthetic_hydrology",
+    "basis": "independent closed form / PDF quadrature",
+    "inputs": {
+      "rainfall_mm": [
+        5,
+        20,
+        10
+      ],
+      "net_reference_mm": [
+        0,
+        13,
+        8
+      ],
+      "dt_h": 1,
+      "area_km2": 6.82,
+      "Ia_mm": 10,
+      "f_mm_per_h": 2,
+      "n": 2,
+      "K_h": 1.2
+    },
+    "peak_m3s": 10.298445039340432,
+    "reference_peak_m3s": 10.298445039340432,
+    "peak_relative_error": 0.0,
+    "peak_interval_start_error_h": 0.0,
+    "volume_m3": 143219.99380083318,
+    "ideal_volume_m3": 143220.0,
+    "volume_relative_error": 4.3284225799382614e-08,
+    "net_max_absolute_error_mm": 0.0,
+    "flow_max_absolute_error_m3s": 3.552713678800501e-15,
+    "unit_response_sum": 0.9999999567157739,
+    "passed": true
+  },
+  {
+    "case": "fractional_gamma_half_hour",
+    "kind": "synthetic_hydrology",
+    "basis": "independent closed form / PDF quadrature",
+    "inputs": {
+      "rainfall_mm": [
+        0,
+        2,
+        5,
+        9
+      ],
+      "net_reference_mm": [
+        0,
+        0,
+        3,
+        8
+      ],
+      "dt_h": 0.5,
+      "area_km2": 2,
+      "Ia_mm": 3,
+      "f_mm_per_h": 2,
+      "n": 2.5,
+      "K_h": 1.2
+    },
+    "peak_m3s": 1.5457933981263696,
+    "reference_peak_m3s": 1.5457933981263692,
+    "peak_relative_error": 2.8728885140041087e-16,
+    "peak_interval_start_error_h": 0.0,
+    "volume_m3": 21999.996714590616,
+    "ideal_volume_m3": 22000,
+    "volume_relative_error": 1.4933679019370835e-07,
+    "net_max_absolute_error_mm": 0.0,
+    "flow_max_absolute_error_m3s": 6.537979657444612e-15,
+    "unit_response_sum": 0.99999985066321,
+    "passed": true
+  },
+  {
+    "case": "zero_rainfall",
+    "kind": "synthetic_hydrology",
+    "basis": "independent closed form / PDF quadrature",
+    "inputs": {
+      "rainfall_mm": [
+        0,
+        0,
+        0
+      ],
+      "net_reference_mm": [
+        0,
+        0,
+        0
+      ],
+      "dt_h": 1,
+      "area_km2": 1,
+      "Ia_mm": 20,
+      "f_mm_per_h": 2,
+      "n": 2.5,
+      "K_h": 1.2
+    },
+    "peak_m3s": 0.0,
+    "reference_peak_m3s": 0.0,
+    "peak_relative_error": 0.0,
+    "peak_interval_start_error_h": 0.0,
+    "volume_m3": 0.0,
+    "ideal_volume_m3": 0,
+    "volume_relative_error": 0.0,
+    "net_max_absolute_error_mm": 0.0,
+    "flow_max_absolute_error_m3s": 0.0,
+    "unit_response_sum": 0.99999985066321,
+    "passed": true
+  },
+  {
+    "case": "rain_below_initial_loss",
+    "kind": "synthetic_hydrology",
+    "basis": "independent closed form / PDF quadrature",
+    "inputs": {
+      "rainfall_mm": [
+        2,
+        3,
+        4
+      ],
+      "net_reference_mm": [
+        0,
+        0,
+        0
+      ],
+      "dt_h": 1,
+      "area_km2": 1,
+      "Ia_mm": 20,
+      "f_mm_per_h": 2,
+      "n": 2,
+      "K_h": 1
+    },
+    "peak_m3s": 0.0,
+    "reference_peak_m3s": 0.0,
+    "peak_relative_error": 0.0,
+    "peak_interval_start_error_h": 0.0,
+    "volume_m3": 0.0,
+    "ideal_volume_m3": 0,
+    "volume_relative_error": 0.0,
+    "net_max_absolute_error_mm": 0.0,
+    "flow_max_absolute_error_m3s": 0.0,
+    "unit_response_sum": 0.9999999567157739,
+    "passed": true
+  },
+  {
+    "case": "plane_32_30_30",
+    "kind": "synthetic_spatial",
+    "basis": "analytic plane geometry, stream threshold 1",
+    "area_km2": 0.9216,
+    "reference_area_km2": 0.9216,
+    "length_km": 1.3152186130069776,
+    "reference_length_km": 1.3152186130069785,
+    "slope": 0.02828427124746247,
+    "reference_slope": 0.028284271247461898,
+    "area_relative_error": 0.0,
+    "length_relative_error": 6.661338147750939e-16,
+    "slope_relative_error": 2.020605904817785e-14,
+    "passed": true
+  },
+  {
+    "case": "plane_32_10_20",
+    "kind": "synthetic_spatial",
+    "basis": "analytic plane geometry, stream threshold 1",
+    "area_km2": 0.2048,
+    "reference_area_km2": 0.2048,
+    "length_km": 0.6931810730249351,
+    "reference_length_km": 0.6931810730249348,
+    "slope": 0.02683281572999799,
+    "reference_slope": 0.026832815729997475,
+    "area_relative_error": 0.0,
+    "length_relative_error": 4.440892098500626e-16,
+    "slope_relative_error": 1.9095836023552692e-14,
+    "passed": true
+  },
+  {
+    "case": "plane_64_30_30",
+    "kind": "synthetic_spatial",
+    "basis": "analytic plane geometry, stream threshold 1",
+    "area_km2": 3.6864,
+    "reference_area_km2": 3.6864,
+    "length_km": 2.672863632885145,
+    "reference_length_km": 2.67286363288515,
+    "slope": 0.028284271247462082,
+    "reference_slope": 0.028284271247461898,
+    "area_relative_error": 0.0,
+    "length_relative_error": 1.7763568394002505e-15,
+    "slope_relative_error": 6.439293542825908e-15,
+    "passed": true
+  },
+  {
+    "case": "nested_storm_peak_monotonicity",
+    "kind": "synthetic_property",
+    "basis": "same pattern, nested total depths; not real return-period statistics",
+    "totals_mm": [
+      60,
+      90,
+      120
+    ],
+    "peaks_m3s": [
+      5.20035488753733,
+      8.689196787895565,
+      12.1780386882538
+    ],
+    "passed": true
+  }
+]

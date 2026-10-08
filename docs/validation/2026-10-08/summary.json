@@ -1,0 +1,247 @@
+{
+  "generated_at_utc": "2026-10-08T01:09:26.521440+00:00",
+  "status": "synthetic_and_performance_only",
+  "real_case_validation": "not_performed_no_data",
+  "git_commit": "ba5d18aae7ddf0e1921b52c2dfd7f6a2007473ce",
+  "working_tree_dirty": true,
+  "host": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.14",
+    "logical_cpus": 8
+  },
+  "synthetic_cases": 9,
+  "synthetic_passed": 9,
+  "performance": [
+    {
+      "size": 128,
+      "cells": 16384,
+      "runs": 2,
+      "pipeline_median_s": 5.316170100006275,
+      "pipeline_min_s": 5.123440600000322,
+      "pipeline_max_s": 5.508899600012228,
+      "fresh_process_max_s": 10.670455500017852,
+      "peak_working_set_mb": 211.63671875,
+      "passed": true
+    },
+    {
+      "size": 256,
+      "cells": 65536,
+      "runs": 2,
+      "pipeline_median_s": 7.00192944999435,
+      "pipeline_min_s": 6.7018704999936745,
+      "pipeline_max_s": 7.301988399995025,
+      "fresh_process_max_s": 11.877127499989001,
+      "peak_working_set_mb": 212.9375,
+      "passed": true
+    },
+    {
+      "size": 512,
+      "cells": 262144,
+      "runs": 2,
+      "pipeline_median_s": 19.85774444999697,
+      "pipeline_min_s": 18.99811420001788,
+      "pipeline_max_s": 20.717374699976062,
+      "fresh_process_max_s": 23.73962290000054,
+      "peak_working_set_mb": 218.61328125,
+      "passed": true
+    },
+    {
+      "size": 1024,
+      "cells": 1048576,
+      "runs": 2,
+      "pipeline_median_s": 135.3880835000018,
+      "pipeline_min_s": 115.00137270000414,
+      "pipeline_max_s": 155.77479429999948,
+      "fresh_process_max_s": 163.13051740001538,
+      "peak_working_set_mb": 391.45703125,
+      "passed": true
+    }
+  ],
+  "performance_samples": [
+    {
+      "size": 128,
+      "cells": 16384,
+      "area_km2": 14.7456,
+      "expected_area_km2": 14.7456,
+      "area_relative_error": 0.0,
+      "pipeline_wall_s": 5.508899600012228,
+      "cpu_s": 4.953125,
+      "peak_working_set_mb": 211.63671875,
+      "volume_relative_error": 1.493367898341554e-07,
+      "versions": {
+        "storm2flow": "0.2.0",
+        "python": "3.12.14",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "matplotlib": "3.11.1",
+        "gdal": "3.13.3",
+        "qgis": "3.44.14-Solothurn"
+      },
+      "passed": true,
+      "fresh_process_wall_s": 10.670455500017852,
+      "repeat": 1
+    },
+    {
+      "size": 128,
+      "cells": 16384,
+      "area_km2": 14.7456,
+      "expected_area_km2": 14.7456,
+      "area_relative_error": 0.0,
+      "pipeline_wall_s": 5.123440600000322,
+      "cpu_s": 4.859375,
+      "peak_working_set_mb": 211.34765625,
+      "volume_relative_error": 1.493367898341554e-07,
+      "versions": {
+        "storm2flow": "0.2.0",
+        "python": "3.12.14",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "matplotlib": "3.11.1",
+        "gdal": "3.13.3",
+        "qgis": "3.44.14-Solothurn"
+      },
+      "passed": true,
+      "fresh_process_wall_s": 8.785044999996899,
+      "repeat": 2
+    },
+    {
+      "size": 256,
+      "cells": 65536,
+      "area_km2": 58.9824,
+      "expected_area_km2": 58.9824,
+      "area_relative_error": 0.0,
+      "pipeline_wall_s": 7.301988399995025,
+      "cpu_s": 7.046875,
+      "peak_working_set_mb": 212.9375,
+      "volume_relative_error": 1.493367898341554e-07,
+      "versions": {
+        "storm2flow": "0.2.0",
+        "python": "3.12.14",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "matplotlib": "3.11.1",
+        "gdal": "3.13.3",
+        "qgis": "3.44.14-Solothurn"
+      },
+      "passed": true,
+      "fresh_process_wall_s": 11.877127499989001,
+      "repeat": 1
+    },
+    {
+      "size": 256,
+      "cells": 65536,
+      "area_km2": 58.9824,
+      "expected_area_km2": 58.9824,
+      "area_relative_error": 0.0,
+      "pipeline_wall_s": 6.7018704999936745,
+      "cpu_s": 6.71875,
+      "peak_working_set_mb": 212.86328125,
+      "volume_relative_error": 1.493367898341554e-07,
+      "versions": {
+        "storm2flow": "0.2.0",
+        "python": "3.12.14",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "matplotlib": "3.11.1",
+        "gdal": "3.13.3",
+        "qgis": "3.44.14-Solothurn"
+      },
+      "passed": true,
+      "fresh_process_wall_s": 9.979842600005213,
+      "repeat": 2
+    },
+    {
+      "size": 512,
+      "cells": 262144,
+      "area_km2": 235.9296,
+      "expected_area_km2": 235.9296,
+      "area_relative_error": 0.0,
+      "pipeline_wall_s": 18.99811420001788,
+      "cpu_s": 19.09375,
+      "peak_working_set_mb": 218.1015625,
+      "volume_relative_error": 1.493367898341554e-07,
+      "versions": {
+        "storm2flow": "0.2.0",
+        "python": "3.12.14",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "matplotlib": "3.11.1",
+        "gdal": "3.13.3",
+        "qgis": "3.44.14-Solothurn"
+      },
+      "passed": true,
+      "fresh_process_wall_s": 22.15121910002199,
+      "repeat": 1
+    },
+    {
+      "size": 512,
+      "cells": 262144,
+      "area_km2": 235.9296,
+      "expected_area_km2": 235.9296,
+      "area_relative_error": 0.0,
+      "pipeline_wall_s": 20.717374699976062,
+      "cpu_s": 19.9375,
+      "peak_working_set_mb": 218.61328125,
+      "volume_relative_error": 1.493367898341554e-07,
+      "versions": {
+        "storm2flow": "0.2.0",
+        "python": "3.12.14",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "matplotlib": "3.11.1",
+        "gdal": "3.13.3",
+        "qgis": "3.44.14-Solothurn"
+      },
+      "passed": true,
+      "fresh_process_wall_s": 23.73962290000054,
+      "repeat": 2
+    },
+    {
+      "size": 1024,
+      "cells": 1048576,
+      "area_km2": 943.7184,
+      "expected_area_km2": 943.7184,
+      "area_relative_error": 0.0,
+      "pipeline_wall_s": 115.00137270000414,
+      "cpu_s": 97.875,
+      "peak_working_set_mb": 391.45703125,
+      "volume_relative_error": 1.493367898341554e-07,
+      "versions": {
+        "storm2flow": "0.2.0",
+        "python": "3.12.14",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "matplotlib": "3.11.1",
+        "gdal": "3.13.3",
+        "qgis": "3.44.14-Solothurn"
+      },
+      "passed": true,
+      "fresh_process_wall_s": 118.58662709998316,
+      "repeat": 1
+    },
+    {
+      "size": 1024,
+      "cells": 1048576,
+      "area_km2": 943.7184,
+      "expected_area_km2": 943.7184,
+      "area_relative_error": 0.0,
+      "pipeline_wall_s": 155.77479429999948,
+      "cpu_s": 119.34375,
+      "peak_working_set_mb": 390.84375,
+      "volume_relative_error": 1.493367898341554e-07,
+      "versions": {
+        "storm2flow": "0.2.0",
+        "python": "3.12.14",
+        "numpy": "2.4.6",
+        "scipy": "1.18.0",
+        "matplotlib": "3.11.1",
+        "gdal": "3.13.3",
+        "qgis": "3.44.14-Solothurn"
+      },
+      "passed": true,
+      "fresh_process_wall_s": 163.13051740001538,
+      "repeat": 2
+    }
+  ],
+  "passed": true
+}

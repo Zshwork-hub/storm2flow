@@ -1,0 +1,20 @@
+{
+  "product_commit": "ba5d18aae7ddf0e1921b52c2dfd7f6a2007473ce",
+  "product_matches_measured_commit": true,
+  "product_text_sha256_lf_normalized": {
+    "storm2flow/__init__.py": "9cbe4d48abe78738101cffd3e251f11e1143ce59bfc3c2e00f75a87e16e36ae9",
+    "storm2flow/config.py": "4fadf77fa7910b6a07e729d802c5ce47a4a65d69a0ab3514dc56cf6d2ec74d34",
+    "storm2flow/errors.py": "336edcf040a68624ad368186e73fd6fd21ad5ddf7889234b1670b8597ebed6d1",
+    "storm2flow/rainfall.py": "58e180565a2be661eaa563ed308d7b3e76833905fd1b89680d859b020afcb7a0",
+    "storm2flow/runoff.py": "5faf372efe8e4bca4ad021e86bbe3f73798eb8ede419f193d4c2818cb076ed24",
+    "storm2flow/unit_hydrograph.py": "1b45128ea0709f05697d93ad12b323c57786d3b1088c8412ed58c4be7fb1e1f8",
+    "storm2flow/dem.py": "00f80162353b6eee74890c6a318e5e2c2db545e73f6bc3020549cb457389ed0b",
+    "storm2flow/spatial.py": "81a65542886bee97705ab1cf6596fc04b759abee6edfc2f59d769a03dba4e2ac",
+    "storm2flow/spatial_pipeline.py": "928fa863a92f8eee6b4757fd5684bacb5738962c7a62e638843a42bfab7a9150",
+    "storm2flow/pipeline.py": "d49d68c86a1c0ff7d7fc0967b6fcfab12c88530ffd5edd0c54606ee3349bd6df",
+    "storm2flow/output.py": "70db74c3f468c73eb15be8318ce34d1acdd638e114a80aeb0b11e1e6cecc443c"
+  },
+  "harness_source_sha256_at_archival": "059eff116dd46d805af46e14d6825c68634007eb3df85b35f38d7b8965e861a5",
+  "note": "Harness hash is at archival time; diagnostic fixes may follow the measurement. Product source is checked against measured Git commit.",
+  "validation_source_sha256_at_archival": "dd73398f92c08946e4a70f8746cddb637fb4c864b717c6a7920a270989226f3e"
+}

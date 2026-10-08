@@ -1,0 +1,21 @@
+{
+  "status": "template_missing_data",
+  "case_name": null,
+  "source_citation_or_file": null,
+  "reference_type": "observed_or_independent_calculation",
+  "reference_method": null,
+  "flow_semantics": "interval_mean",
+  "time_step_h": null,
+  "rainfall_file": null,
+  "dem_file": null,
+  "outlet_file_or_coordinates": null,
+  "loss_parameter_source": null,
+  "unit_hydrograph_parameter_source": null,
+  "expected_peak_mean_flow_m3s": null,
+  "expected_peak_interval_start_h": null,
+  "expected_volume_m3": null,
+  "acceptance_peak_relative_error": 0.2,
+  "acceptance_volume_relative_error": 0.2,
+  "acceptance_peak_time_error_h": null,
+  "notes": "模板，不是已验收案例。实测瞬时洪峰不能直接当作时段平均洪峰基准；应先对齐时间步长与流量语义。"
+}

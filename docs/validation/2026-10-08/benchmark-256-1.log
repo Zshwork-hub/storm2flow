@@ -1,0 +1,2 @@
+D:\QGIS 3.44.14\apps\Python312\Lib\site-packages\osgeo\osr.py:424: FutureWarning: Neither osr.UseExceptions() nor osr.DontUseExceptions() has been explicitly called. In GDAL 4.0, exceptions will be enabled by default.
+  warnings.warn(
